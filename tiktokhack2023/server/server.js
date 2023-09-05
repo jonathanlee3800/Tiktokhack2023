@@ -11,7 +11,7 @@ app.get("/", (req, res) => {
 
 app.listen(port, async () => {
   console.log(`Example app listening on port ${port}`);
-  const docRef = firebase.db.collection("users").doc("alovelace");
+  const docRef = firebase.db.collection("users").doc("hi");
   await docRef.set({
     first: "Ada",
     last: "Lovelace",
