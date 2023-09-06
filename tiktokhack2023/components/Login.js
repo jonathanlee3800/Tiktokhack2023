@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {useAtom} from "jotai";
+import { loginAtom } from '../state';
 
 export default function Login () {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [tokenAuth, setTokenAuth] = useState("");
-  const [authorized, setAuthorized] = useState(false);
+//   const [authorized, setAuthorized] = useState(false);
+  const [login, setLogin] = useAtom(loginAtom);
 
 
   const auth = getAuth();
@@ -25,7 +28,8 @@ export default function Login () {
     })
     .then(token=>{
         setTokenAuth(token);
-        setAuthorized(true);
+        // setAuthorized(true);
+        setLogin(true);
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -38,7 +42,7 @@ export default function Login () {
 
   return (
     <View style={styles.container}>
-      {authorized ? 
+      {login ? 
       <Text>Signed In</Text>
       :<View>
         <Text style={styles.header}>Login</Text>
