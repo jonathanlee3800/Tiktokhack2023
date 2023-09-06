@@ -12,14 +12,20 @@ import Login from "./components/Login";
 import {useAtom} from "jotai";
 import { loginAtom } from "./state";
 
+import {TailwindProvider} from 'tailwind-rn';
+import utilities from './tailwind.json';
+
 
 export default function App() {
+
+
 
   const [login, setLogin] = useAtom(loginAtom);
   const Stack = createNativeStackNavigator();
 
+
   return (
-    <>
+    <TailwindProvider utilities = {utilities}>
   {login ?   
     <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
@@ -32,7 +38,7 @@ export default function App() {
     }
     
 
-    </>
+    </TailwindProvider>
 
   );
 }
