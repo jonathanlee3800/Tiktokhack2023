@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
@@ -9,14 +9,15 @@ export default function Login () {
   const [tokenAuth, setTokenAuth] = useState("");
   const [authorized, setAuthorized] = useState(false);
 
+
   const auth = getAuth();
   const signInHandler = () => {
+    console.log("HERE!");
     signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in 
       const user = userCredential.user;
       return user;
-      // ...
     })
     .then((res) => {
       const token = res.getIdToken();
@@ -24,7 +25,6 @@ export default function Login () {
     })
     .then(token=>{
         setTokenAuth(token);
-        sessionStorage.setItem("accessToken", token);
         setAuthorized(true);
     })
     .catch((error) => {
