@@ -16,7 +16,6 @@ import { loginAtom } from "./state";
 export default function App() {
 
   const [login, setLogin] = useAtom(loginAtom);
-
   const Stack = createNativeStackNavigator();
 
   return (
