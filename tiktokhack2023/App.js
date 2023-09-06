@@ -6,33 +6,27 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Landing from "../tiktokhack2023/screens/landing";
 import Profile from "../tiktokhack2023/screens/profile";
 
-import './config/firebase-config';
+import "./config/firebase-config";
 import Login from "./components/Login";
 
-import {useAtom} from "jotai";
+import { useAtom } from "jotai";
 import { loginAtom } from "./state";
 
-
 export default function App() {
-
   const [login, setLogin] = useAtom(loginAtom);
   const Stack = createNativeStackNavigator();
-
   return (
     <>
-  {login ?   
-    <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Home" component={Landing} />
-          <Stack.Screen name="Profile" component={Profile} />
-        </Stack.Navigator>
-     </NavigationContainer>
-    :
-    <Login/> 
-    }
-    
-
+      {login ? (
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName="Home">
+            <Stack.Screen name="Home" component={Landing} />
+            <Stack.Screen name="Profile" component={Profile} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      ) : (
+        <Login />
+      )}
     </>
-
   );
 }
