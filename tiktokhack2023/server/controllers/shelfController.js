@@ -27,6 +27,17 @@ const getAllCampaignsByUser = async (req, res) => {
         });
   
         const campaignResults = await Promise.all(campaignPromises);
+
+        const userItemMapping = new Map();
+
+        for (campaign in campaignResults){
+            if (!userItemMapping.has(campaign.campaign)){
+                //the list i intend to make it a 2D array, containing item, and boolean
+                userItemMapping.set(campaign.campaign, []);
+            }
+            
+        }
+    
   
         return res.status(200).json({body: campaignResults});
     }catch(error){
@@ -34,15 +45,16 @@ const getAllCampaignsByUser = async (req, res) => {
     }
   }
 
-module.exports = {
-    getAllCampaignsByUser
-}
 
-//get in terms of trophies, from each userCampaign
-
+//get in terms of items, from each userCampaign
 
 //in a group buy, add all users to a shared campaign
 
 
 
 //PURCHASE in a SHARED PURCHASE; give the items to all users
+
+
+module.exports = {
+    getAllCampaignsByUser
+}
