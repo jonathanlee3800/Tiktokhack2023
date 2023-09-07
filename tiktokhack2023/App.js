@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 //screens
 import Landing from "../tiktokhack2023/screens/landing";
 import Profile from "../tiktokhack2023/screens/profile";
+import Campaigns from "../tiktokhack2023/screens/campaigns";
 
 import "./config/firebase-config";
 import Login from "./components/Login";
@@ -26,6 +27,7 @@ export default function App() {
         <Stack.Navigator initialRouteName="Home">
           <Stack.Screen name="Home" component={Landing} />
           <Stack.Screen name="Profile" component={Profile} />
+          <Stack.Screen name="Campaigns" component={Campaigns} />
         </Stack.Navigator>
       </NavigationContainer>
        :

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, Easing, Animated } from "react-native";
+import { StyleSheet, Text, Button, View, Image, Easing, Animated } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { useTailwind } from "tailwind-rn/dist";
 import React, { useRef, useEffect } from "react";
@@ -107,6 +107,10 @@ export default Landing = ({ navigation }) => {
       <Text onPress={() => navigation.navigate("Profile")} style={tailwind("text-blue-600")}>
         Open up App.js to start working on your app!
       </Text>
+      <Button
+        onPress={() => navigation.navigate("Campaigns")}
+        title="Campaigns"
+      />
       <StatusBar style="auto" />
     </SafeAreaView>
   );
