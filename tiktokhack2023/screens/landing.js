@@ -104,9 +104,9 @@ export default Landing = ({ navigation }) => {
           loop
         />
       </View>
-      {/* <Text onPress={() => navigation.navigate("Profile")} style={tailwind("text-blue-600")}>
+      <Text onPress={() => navigation.navigate("Profile")} style={tailwind("text-blue-600")}>
         Open up App.js to start working on your app!
-      </Text> */}
+      </Text>
       <StatusBar style="auto" />
     </SafeAreaView>
   );

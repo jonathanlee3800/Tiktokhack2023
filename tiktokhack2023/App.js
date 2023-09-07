@@ -21,16 +21,16 @@ export default function App() {
 
   return (
     <TailwindProvider utilities={utilities}>
-      {/* {login ?    */}
+      {login ?
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
           <Stack.Screen name="Home" component={Landing} />
           <Stack.Screen name="Profile" component={Profile} />
         </Stack.Navigator>
       </NavigationContainer>
-      {/* :
+       :
     <Login/> 
-    } */}
+    }
     </TailwindProvider>
   );
 }
