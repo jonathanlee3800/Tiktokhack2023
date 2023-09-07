@@ -1,7 +1,9 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Animated, Text, View, Image, Easing, StyleSheet } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import React, { useRef, useEffect } from "react";
+import LottieView from "lottie-react-native";
 
-export default Profile = ({navigation}) => {
+export default Profile = ({ navigation }) => {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
