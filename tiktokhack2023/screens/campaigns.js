@@ -1,9 +1,5 @@
-import { View, FlatList, Text, StyleSheet, ImageBackground, ImageComponent } from 'react-native'
+import { View, FlatList, Text, StyleSheet, ImageBackground, Pressable} from 'react-native'
 import image from "../assets/pokemon.jpg"
-import {
-    ViewPlaceholder,
-    Direction,
-  } from "react-native-js-shimmer-placeholder";
 
 const data = [
     { campaignID: 1, title: "Pokemon", source: "../assets/pokemon.jpg" },
@@ -29,30 +25,24 @@ const data = [
 ]
 
 const Campaigns = () => {
+    // const data = fetchCampaignsData();
     return (<FlatList
         data={data}
         renderItem={({ item }) => {
             // console.log(item)
             return (
-                <ImageBackground style={styles.card} imageStyle={styles.image} source={image}>
-                    <ViewPlaceholder
-                        show={true}
-                        width={100}
-                        height={100}
-                        style={{
-                            borderWidth: 1,
-                            borderColor: "lightgrey",
-                            borderRadius: 50,
-                        }}
-                        direction={Direction.UP}
-                        gradientContainerStyle={{ borderRadius: 50 }}
+            <Pressable
+                onPress={() => {console.log("pressed")}}>
+                <ImageBackground 
+                    style={styles.card}
+                    imageStyle={styles.image}
+                    source={image}
                     >
-
-                        <View style={styles.overlay}>
-                            <Text style={styles.text}>{item.title}</Text>
-                        </View>
-                    </ViewPlaceholder>
+                    <View style={styles.overlay}>
+                        <Text style={styles.text}>{item.title}</Text>
+                    </View>
                 </ImageBackground>
+            </Pressable>
             )
         }}
         keyExtractor={(item) => item.campaignID}
