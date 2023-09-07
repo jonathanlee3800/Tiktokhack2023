@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, Button, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
 export default Landing = ({ navigation }) => {
@@ -15,6 +15,10 @@ export default Landing = ({ navigation }) => {
       <Text onPress={() => navigation.navigate("Profile")}>
         Open up App.js to start working on your app!
       </Text>
+      <Button
+        onPress={() => navigation.navigate("Campaigns")}
+        title="Campaigns"
+      />
       <StatusBar style="auto" />
     </View>
   );
