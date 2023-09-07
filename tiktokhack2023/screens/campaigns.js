@@ -1,6 +1,6 @@
 import { View, FlatList, Text, StyleSheet, ImageBackground, Pressable, Image} from 'react-native'
 import image from "../assets/pokemon.jpg"
-import logo from "../assets/essentials.png";
+// import logo from "../assets/essentials.png";
 
 const data = [
     { campaignID: 1, title: "Pokemon", source: "../assets/pokemon.jpg", logo: "../assets/pokemon.png"},
@@ -47,7 +47,7 @@ const Campaigns = () => {
                         style={styles.card}
                     >   
                         <Image
-                            source={logo}
+                            source={image}
                             style={styles.image}
                         />
                     </View>
