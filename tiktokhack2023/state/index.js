@@ -17,3 +17,4 @@ export const friendListAtom = atom([
     { id: 4, name: "john doe", amount: 0 },
     { id: 5, name: "big bunda", amount: 0 }
   ]);
+export const totalPriceAtom = atom(0);

@@ -3,21 +3,27 @@ import { View, Text, TouchableOpacity, StyleSheet, Animated, Dimensions } from '
 import Modal from 'react-native-modal';
 import UserSearch from "./UserSearch";
 
+//---utility functions---
+import { calculateTotal } from '../../utility';
+
 //--styles--
 import {useTailwind} from "tailwind-rn/dist";
 
 //----Global states: user Amounts etc.----
 import {useAtom} from "jotai";
-import {friendListAtom} from "../../state/index";
+import {friendListAtom, totalPriceAtom} from "../../state/index";
 
+const unitPrice = 15;
 
 const GroupBuyModal = ({ isVisible, closeModal }) => {
   const tailwind = useTailwind();
+
 
   const [slideAnimation] = useState(new Animated.Value(0));
   const [groupBuyVisible, setGroupBuyVisible] = useState(false);
   const {height, width} = Dimensions.get("window");
   const [users, setUsers] = useAtom(friendListAtom);
+  const [total, setTotal] = useAtom(totalPriceAtom);
 
   useEffect(() => {
     if (isVisible) {
@@ -38,6 +44,7 @@ const GroupBuyModal = ({ isVisible, closeModal }) => {
   }, [isVisible, slideAnimation]);
 
   useEffect(()=>{
+    
     let counter = 0;
     users.forEach(el=>{
         if (el.amount>0){
@@ -55,6 +62,13 @@ const GroupBuyModal = ({ isVisible, closeModal }) => {
 
   },[users, groupBuyVisible]);
 
+  useEffect(()=> {
+    setTotal(calculateTotal(users, unitPrice));
+  },[users]);
+
+  
+  
+
  
   const translateY = slideAnimation.interpolate({
     inputRange: [0, 1],
@@ -68,7 +82,7 @@ const GroupBuyModal = ({ isVisible, closeModal }) => {
       {groupBuyVisible 
       && 
       <TouchableOpacity style={tailwind("justify-center items-center bg-red-tiktok py-2 mb-2 rounded")}>
-        <Text style={tailwind("text-white")}>Group Buy</Text>
+        <Text style={tailwind("text-white")}>Group Buy: ${total}</Text>
       </TouchableOpacity>
       }
       <TouchableOpacity onPress={closeModal}>
