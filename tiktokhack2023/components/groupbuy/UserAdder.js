@@ -17,17 +17,18 @@ const UserAdder = ({userId}) => {
     
     
     const valueChangeHandler = (str) => () => {
-
-        setCounter(str==="+"?counter+1:counter>0?counter-1:0);
         const indexOfUser = users.findIndex(el=>el.id===userId);
         console.log(`indexOfUser = ${indexOfUser}`);
+        const userAmount = users[indexOfUser].amount;
+        setCounter(str==="+"?userAmount+1:userAmount>0?userAmount-1:0);
+
 
      
         setUsers(prev=>{
             const newList = [...prev];
             let user = newList[0];
-            const offset=str==="+"?1:counter>0?-1:0;
-            user = {id: userId, name: user.name, amount:user.amount+offset}
+            const offset=str==="+"?1:user.amount>0?-1:0;
+            user = {id: userId, name: user.name, amount:user.amount+offset>0?user.amount+offset:0}
             newList[indexOfUser]=user;
             console.log(users);
             return newList;
