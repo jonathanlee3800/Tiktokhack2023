@@ -1,4 +1,9 @@
 {
+	"absolute": {
+		"style": {
+			"position": "absolute"
+		}
+	},
 	"flex": {
 		"style": {
 			"display": "flex"
