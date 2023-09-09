@@ -3,7 +3,8 @@ module.exports = {
   theme: {
     extend: {
       "colors":{
-        "red-tiktok":"#EE1D52"
+        "red-tiktok":"#EE1D52",
+        "white":"#FFFFFF"
       }
     },
   },
