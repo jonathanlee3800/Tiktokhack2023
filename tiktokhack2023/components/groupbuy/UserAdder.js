@@ -34,7 +34,7 @@ const UserAdder = ({userId}) => {
         })
     }
     return(
-        <View style={tailwind("flex flex-row bg-slate-200 rounded gap-2")}>
+        <View style={tailwind("flex flex-row bg-slate-200 rounded")}>
             <TouchableOpacity onPress={valueChangeHandler("-")} style={tailwind("rounded-full border-solid border-2 border-slate-300 mr-3 w-5 h-5 flex justify-center items-center")}>
                 <Text>-</Text>
             </TouchableOpacity>
