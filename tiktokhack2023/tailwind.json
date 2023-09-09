@@ -123,11 +123,6 @@
 			"backgroundColor": "transparent"
 		}
 	},
-	"bg-white": {
-		"style": {
-			"backgroundColor": "white"
-		}
-	},
 	"px-4": {
 		"style": {
 			"paddingLeft": 16,
