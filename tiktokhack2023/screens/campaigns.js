@@ -12,7 +12,7 @@ const data = [
     { campaignID: 6, title: "Minecraft", source: "../assets/pokemonListing1.jpeg" , logo: "../assets/pokemonListing1.jpeg"},
 ]
 
-const Campaigns = () => {
+const Campaigns = ({navigation}) => {
     // const data = fetchCampaignsData();
     // const url = "localhost:3000"
     // const campaignData = await fetch (`${url}/users/`)
@@ -24,7 +24,7 @@ const Campaigns = () => {
             // console.log(item)
             return (
                 <Pressable
-                    onPress={() => { console.log("pressed") }}>
+                    onPress={() => { navigation.navigate("ShopListing") }}>
                     {/* <ImageBackground 
                     style={styles.card}
                     imageStyle={styles.image}

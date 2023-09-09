@@ -1,4 +1,4 @@
-import { Animated, Text, View, Image, Easing, StyleSheet, Dimensions } from "react-native";
+import { Animated, Text, View, Image, Easing, StyleSheet, Dimensions} from "react-native";
 import { StatusBar } from "expo-status-bar";
 import React, { useRef, useEffect } from "react";
 import LottieView from "lottie-react-native";
@@ -24,9 +24,9 @@ export default Shop = ({ navigation }) => {
     <View style={styles.container}>
       <Image 
              source = {require("../assets/pokemonshop-header.png")}
-             style={tailwind(`width-[${width}] height-[270] top-10`)}
+             style={tailwind(`width-[${width}] height-[270px] top-10`)}
       />
-      <Campaigns/>
+      <Campaigns navigation={navigation}/>
       {/* <StatusBar style="auto" /> */}
     </View>
   );
