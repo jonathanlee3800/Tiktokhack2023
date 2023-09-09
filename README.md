@@ -9,6 +9,9 @@ Open a new concurrent terminal
 - npm run fix:tailwind
 - npm run dev:tailwind
 
+email: dembouz117@gmail.com
+password: dembouz
+
 Server side code:
 On main branch, cloud functions
 has been set up but and backend code deployed via firebase admin console
