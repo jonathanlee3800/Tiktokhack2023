@@ -1,39 +1,30 @@
 import { View, FlatList, Text, StyleSheet, ImageBackground, Pressable, Image} from 'react-native'
-import image from "../assets/pokemon.jpg"
+import { useTailwind } from 'tailwind-rn/dist';
+import image from "../assets/pokemonListing1.jpeg"
 // import logo from "../assets/essentials.png";
 
 const data = [
-    { campaignID: 1, title: "Pokemon", source: "../assets/pokemon.jpg", logo: "../assets/pokemon.png"},
-    { campaignID: 2, title: "Mario", source: "../assets/pokemon.jpg" , logo: "../assets/pokemon.png"},
-    { campaignID: 3, title: "Zelda", source: "../assets/pokemon.jpg" , logo: "../assets/pokemon.png"},
-    { campaignID: 4, title: "Drew House", source: "../assets/pokemon.jpg" , logo: "../assets/pokemon.png"},
-    { campaignID: 5, title: "Fortnite", source: "../assets/pokemon.jpg" , logo: "../assets/pokemon.png"},
-    { campaignID: 6, title: "Minecraft", source: "../assets/pokemon.jpg" , logo: "../assets/pokemon.png"},
-    { campaignID: 7, title: "Call of Duty", source: "../assets/pokemon.png" , logo: "../assets/pokemon.png"},
-    { campaignID: 8, title: "Among Us", source: "../assets/pokemon.jpg" , logo: "../assets/pokemon.png"},
-    { campaignID: 9, title: "Animal Crossing", source: "../assets/pokemon.jpg" , logo: "../assets/pokemon.png"},
-    { campaignID: 10, title: "Fall Guys", source: "../assets/pokemon.jpg" , logo: "../assets/pokemon.png"},
-    { campaignID: 11, title: "Apex Legends", source: "../assets/pokemon.jpg" , logo: "../assets/pokemon.png"},
-    { campaignID: 12, title: "Overwatch", source: "../assets/pokemon.jpg" , logo: "../assets/pokemon.png"},
-    { campaignID: 13, title: "League of Legends", source: "../assets/pokemon.jpg" , logo: "../assets/pokemon.png"},
-    { campaignID: 14, title: "World of Warcraft", source: "../assets/pokemon.jpg" , logo: "../assets/pokemon.png"},
-    { campaignID: 15, title: "Final Fantasy", source: "../assets/pokemon.jpg" , logo: "../assets/pokemon.png"},
-    { campaignID: 16, title: "Assassin's Creed", source: "../assets/pokemon.jpg" , logo: "../assets/pokemon.png"},
-    { campaignID: 17, title: "The Legend of Zelda: Breath of the Wild", source: "../assets/pokemon.jpg" , logo: "../assets/pokemon.png"},
-    { campaignID: 18, title: "Super Smash Bros Ultimate", source: ".../assets/pokemon.jpg" , logo: "../assets/pokemon.png"},
-    { campaignID: 19, title: "Red Dead Redemption 2", source: "../assets/pokemon.jpg" , logo: "../assets/pokemon.png"},
-    { campaignID: 20, title: "Cyberpunk 2077", source: "../assets/pokemon.jpg" , logo: "../assets/pokemon.png"},
+    { campaignID: 1, title: "Pokemon", source: "../assets/pokemonListing1.jpeg", logo: "../assets/pokemonListing1.jpeg"},
+    { campaignID: 2, title: "Mario", source: "../assets/pokemonListing1.jpeg" , logo: "../assets/pokemonListing1.jpeg"},
+    { campaignID: 3, title: "Zelda", source: "../assets/pokemonListing1.jpeg" , logo: "../assets/pokemonListing1.jpeg"},
+    { campaignID: 4, title: "Drew House", source: "../assets/pokemonListing1.jpeg" , logo: "../assets/pokemonListing1.jpeg"},
+    { campaignID: 5, title: "Fortnite", source: "../assets/pokemonListing1.jpeg" , logo: "../assets/pokemonListing1.jpeg"},
+    { campaignID: 6, title: "Minecraft", source: "../assets/pokemonListing1.jpeg" , logo: "../assets/pokemonListing1.jpeg"},
 ]
 
-const Campaigns = () => {
+const Campaigns = ({navigation}) => {
     // const data = fetchCampaignsData();
-    return (<FlatList
+    // const url = "localhost:3000"
+    // const campaignData = await fetch (`${url}/users/`)
+    const tailwind = useTailwind();
+    return (
+    <FlatList
         data={data}
         renderItem={({ item }) => {
             // console.log(item)
             return (
                 <Pressable
-                    onPress={() => { console.log("pressed") }}>
+                    onPress={() => { navigation.navigate("ShopListing") }}>
                     {/* <ImageBackground 
                     style={styles.card}
                     imageStyle={styles.image}
@@ -56,7 +47,10 @@ const Campaigns = () => {
         }}
         keyExtractor={(item) => item.campaignID}
         contentContainerStyle={styles.listContainer}
-    />);
+        style={tailwind(`top-10`)}
+    />
+    
+    );
 };
 
 const styles = StyleSheet.create({
