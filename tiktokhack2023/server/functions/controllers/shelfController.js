@@ -1,4 +1,4 @@
-const {db} = require("../firebase.js");
+const {db} = require("../../firebase.js");
 
 //get in terms of campaigns: to be called in the shelf screen
 const getAllCampaignsByUser = async (req, res) => {  
