@@ -14,7 +14,7 @@ password: dembouz
 
 Server side code:
 On main branch, cloud functions
-has been set up but and backend code deployed via firebase admin console
+has been set up and backend code deployed via firebase admin console
 
 Framework:
 Client-side:
