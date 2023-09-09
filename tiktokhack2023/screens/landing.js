@@ -1,11 +1,12 @@
-import { StyleSheet, Text, View, Image, Easing, Animated } from "react-native";
+import { StyleSheet, Text, View, Image, Easing, Animated, Dimensions, TouchableOpacity } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { useTailwind } from "tailwind-rn/dist";
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import LottieView from "lottie-react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const AnimatedLottieView = Animated.createAnimatedComponent(LottieView);
+
 
 const ControlAnimation = () => {
   const animationProgress = useRef(new Animated.Value(0));
@@ -61,6 +62,9 @@ const FadeInView = (props) => {
 };
 
 export default Landing = ({ navigation }) => {
+
+  const {height, width} = Dimensions.get('window');
+  const [buttonBg, setButtonBg] = useState("white");
   const tailwind = useTailwind();
   const styles = StyleSheet.create({
     container: {
@@ -70,6 +74,12 @@ export default Landing = ({ navigation }) => {
       justifyContent: "center",
     },
   });
+
+  const CollectionButtonPressHandler = () => {
+    setButtonBg("slate-200");
+    navigation.navigate("CampaignPrelude");
+  }
+  
   return (
     <SafeAreaView style={styles.container}>
       {/* <FadeInView
@@ -96,17 +106,26 @@ export default Landing = ({ navigation }) => {
           position: "absolute",
         }}
       /> */}
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center", marginBottom: "30%" }}>
-        <LottieView
+      <View style={{ flex: 1, alignItems: "center", justifyContent: "center", marginBottom: "30%", position: "relative" }}>
+        {/* <LottieView
           source={require("../assets/animations/astronaut.json")}
           style={{ width: "80%", aspectRatio: 1 }}
           autoPlay
           loop
+        /> */}
+        <Image
+        source = {require("../assets/liveStream.png")}
+        style={{ width: width, height: height + 100 }}
         />
+        <TouchableOpacity style = {tailwind(`w-60 h-14 py-2 bg-${buttonBg} absolute rounded-full -right-3 -bottom-[59px] flex-row justify-between items-center px-4`)} onPress = {CollectionButtonPressHandler}>
+          <Text style = {tailwind("font-extrabold text-lg relative")}>Start Collection</Text>
+          <Image source = {require("../assets/tiktokshop-black.png")} style = {{height:50, width: 50}}/>
+        </TouchableOpacity>
+
       </View>
-      <Text onPress={() => navigation.navigate("Profile")} style={tailwind("text-blue-600")}>
+      {/* <Text onPress={() => navigation.navigate("Profile")} style={tailwind("text-blue-600")}>
         Open up App.js to start working on your app!
-      </Text>
+      </Text> */}
       <StatusBar style="auto" />
     </SafeAreaView>
   );
