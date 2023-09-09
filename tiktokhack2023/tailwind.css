@@ -30,12 +30,40 @@
   top: 2.5rem
 }
 
+.top-3 {
+  top: 0.75rem
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem
+}
+
+.ml-3 {
+  margin-left: 0.75rem
+}
+
+.mr-3 {
+  margin-right: 0.75rem
+}
+
 .flex {
   display: flex
 }
 
 .h-14 {
   height: 3.5rem
+}
+
+.h-5 {
+  height: 1.25rem
+}
+
+.w-1\/2 {
+  width: 50%
+}
+
+.w-5 {
+  width: 1.25rem
 }
 
 .w-60 {
@@ -74,6 +102,11 @@
   border-style: solid
 }
 
+.border-slate-300 {
+  --tw-border-opacity: 1;
+  border-color: rgb(203 213 225 / var(--tw-border-opacity))
+}
+
 .border-white {
   --tw-border-opacity: 1;
   border-color: rgb(255 255 255 / var(--tw-border-opacity))
@@ -82,6 +115,11 @@
 .bg-red-tiktok {
   --tw-bg-opacity: 1;
   background-color: rgb(238 29 82 / var(--tw-bg-opacity))
+}
+
+.bg-slate-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(226 232 240 / var(--tw-bg-opacity))
 }
 
 .bg-transparent {

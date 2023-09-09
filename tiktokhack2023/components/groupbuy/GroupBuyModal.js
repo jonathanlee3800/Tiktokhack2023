@@ -3,10 +3,21 @@ import { View, Text, TouchableOpacity, StyleSheet, Animated, Dimensions } from '
 import Modal from 'react-native-modal';
 import UserSearch from "./UserSearch";
 
+//--styles--
+import {useTailwind} from "tailwind-rn/dist";
+
+//----Global states: user Amounts etc.----
+import {useAtom} from "jotai";
+import {friendListAtom} from "../../state/index";
+
 
 const GroupBuyModal = ({ isVisible, closeModal }) => {
+  const tailwind = useTailwind();
+
   const [slideAnimation] = useState(new Animated.Value(0));
+  const [groupBuyVisible, setGroupBuyVisible] = useState(false);
   const {height, width} = Dimensions.get("window");
+  const [users, setUsers] = useAtom(friendListAtom);
 
   useEffect(() => {
     if (isVisible) {
@@ -26,6 +37,24 @@ const GroupBuyModal = ({ isVisible, closeModal }) => {
     }
   }, [isVisible, slideAnimation]);
 
+  useEffect(()=>{
+    let counter = 0;
+    users.forEach(el=>{
+        if (el.amount>0){
+            console.log(groupBuyVisible);
+            setGroupBuyVisible(true);
+            counter++;
+            return;
+        }
+    });
+    if(counter>0){
+        return;
+    }
+
+    setGroupBuyVisible(false);
+
+  },[users, groupBuyVisible]);
+
  
   const translateY = slideAnimation.interpolate({
     inputRange: [0, 1],
@@ -35,6 +64,13 @@ const GroupBuyModal = ({ isVisible, closeModal }) => {
   return (
     <Animated.View style={[styles.modalContainer, { transform: [{ translateY }] }]}>
       <UserSearch/>
+
+      {groupBuyVisible 
+      && 
+      <TouchableOpacity style={tailwind("justify-center items-center bg-red-tiktok py-2 mb-2 rounded")}>
+        <Text style={tailwind("text-white")}>Group Buy</Text>
+      </TouchableOpacity>
+      }
       <TouchableOpacity onPress={closeModal}>
         <Text style={styles.closeButton}>Close</Text>
       </TouchableOpacity>

@@ -1,29 +1,42 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, FlatList, Text, StyleSheet, TouchableOpacity } from 'react-native';
+
+import UserAdder from './UserAdder';
+
 import { useTailwind } from 'tailwind-rn/dist';
+import {useAtom} from "jotai";
+
+import {friendListAtom} from "../../state/index";
 
 //fetch users here
 
 const UserSearch = () => {
     const [searchText, setSearchText] = useState('');
-    const [searchResults, setSearchResults] = useState([]);
+    const [users, setUsers] = useAtom(friendListAtom);
+    const [searchResults, setSearchResults] = useState(users);
+
     const tailwind = useTailwind();
-    // Function to handle text input changes
+   
     const handleInputChange = (text) => {
+    if (text.length==0){
+            setSearchResults(users);
+            setSearchText(text);
+            return;
+    }
+      const searchedUsers = users.filter(el => el.name.toLowerCase().includes(text.toLowerCase()))
+      setSearchResults(searchedUsers);
       setSearchText(text);
     };
   
-    // Function to handle the search button press
+
     const handleSearch = () => {
-      // Perform a user search based on the searchText (you can replace this with your actual search logic)
-      // For this example, we simulate a search with dummy data.
-      const dummySearchResults = [
-        { id: 1, name: 'User 1' },
-        { id: 2, name: 'User 2' },
-        { id: 3, name: 'User 3' },
-      ];
+      if (searchText.length==0){
+        setSearchResults(users);
+        return;
+      }
+      const searchedUsers = users.filter(el => el.name.toLowerCase().includes(searchText.toLowerCase()))
   
-      setSearchResults(dummySearchResults);
+      setSearchResults(searchedUsers);
     };
   
     return (
@@ -34,15 +47,20 @@ const UserSearch = () => {
           value={searchText}
           onChangeText={handleInputChange}
         />
-        <TouchableOpacity onPress={handleSearch} style={tailwind(`bg-red-tiktok py-2 px-4 flex justify-center items-center rounded w-1/2`)}>
-            <Text style={tailwind(`text-white`)}>Search</Text>
-        </TouchableOpacity>
+        <View style={tailwind("flex flex-row justify-center")}>
+            <TouchableOpacity onPress={handleSearch} style={tailwind(`bg-red-tiktok py-2 px-4 flex justify-center items-center rounded w-1/2`)}>
+                <Text style={tailwind(`text-white`)}>Search</Text>
+            </TouchableOpacity>
+        </View>
+
         <FlatList
           data={searchResults}
           keyExtractor={(item) => item.id.toString()}
+          style={tailwind(`top-3`)}
           renderItem={({ item }) => (
-            <View style={styles.userItem}>
+            <View style={styles.userItem} key={item.name}>
               <Text>{item.name}</Text>
+              <UserAdder userId={item.id}/>
             </View>
           )}
         />
@@ -54,6 +72,7 @@ const UserSearch = () => {
     container: {
       flex: 1,
       padding: 16,
+    
     },
     input: {
       height: 40,
@@ -68,6 +87,9 @@ const UserSearch = () => {
       borderColor: 'lightgray',
       marginBottom: 8,
       borderRadius: 5,
+      flex:1,
+      flexDirection: "row",
+      justifyContent: "space-between"
     },
   });
 

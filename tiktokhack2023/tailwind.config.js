@@ -1,10 +1,14 @@
 module.exports = {
-  content: ["./*/**.{js,jsx}"],
+  content: [
+    'App.js',
+    './screens/**/*.{html,js}',
+    './components/**/*.{html,js}'
+    ],
   theme: {
     extend: {
       "colors":{
         "red-tiktok":"#EE1D52",
-        "white":"#FFFFFF"
+        "white":"#FFFFFF",
       }
     },
   },
