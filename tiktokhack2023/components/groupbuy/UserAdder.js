@@ -9,12 +9,6 @@ const UserAdder = ({userId}) => {
 
     const [users, setUsers] = useAtom(friendListAtom);
     const [counter, setCounter] = useState(0);
-    useEffect(()=>{console.log(userId);
-    
-    const indexOfUser1 = users.findIndex(el=>el.id===userId);
-    console.log(`indexOfUser = ${indexOfUser1}`);}
-    ,[]);
-    
     
     const valueChangeHandler = (str) => () => {
         const indexOfUser = users.findIndex(el=>el.id===userId);
@@ -26,7 +20,7 @@ const UserAdder = ({userId}) => {
      
         setUsers(prev=>{
             const newList = [...prev];
-            let user = newList[0];
+            let user = newList[indexOfUser];
             const offset=str==="+"?1:user.amount>0?-1:0;
             user = {id: userId, name: user.name, amount:user.amount+offset>0?user.amount+offset:0}
             newList[indexOfUser]=user;

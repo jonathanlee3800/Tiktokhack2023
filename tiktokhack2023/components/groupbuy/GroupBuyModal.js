@@ -64,17 +64,9 @@ const GroupBuyModal = ({ isVisible, closeModal }) => {
 
   useEffect(()=> {
     setTotal(calculateTotal(users, unitPrice));
-  },[users])
+  },[users]);
 
-//   const calculateTotal = (ls) => {
-//     let counter = 0;
-//     ls.forEach(el=>{
-//         counter+=el.amount;
-//     })
-//     console.log(`total:${total}`)
-//     return counter;
-// }
-
+  
   
 
  
